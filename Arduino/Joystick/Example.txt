@@ -1,0 +1,41 @@
+/*
+@Author: Bilel OURAL
+@Version: 0.1
+@License: GNU v3
+@Description: Read a Joystick control Position on an Arduino board
+*/
+
+#include "JoystickCtrl.h"
+
+#define JOYSTICK_MIN_VAL 0
+#define JOYSTICK_MAX_VAL 1023
+#define JOYSTICK_PIN_X 0
+#define JOYSTICK_PIN_Y 1
+#define JOYSTICK_PIN_SW 2
+#define MIN_EXPECTED_VALUE -500
+#define MAX_EXPECTED_VALUE 500
+
+//Instantiate a new Joystick Control
+JoystickControl jCtrl(JOYSTICK_MIN_VAL, JOYSTICK_MAX_VAL, JOYSTICK_PIN_X, JOYSTICK_PIN_Y, JOYSTICK_PIN_SW, MIN_EXPECTED_VALUE, MAX_EXPECTED_VALUE);
+
+void setup(){
+	//Open a Serial access
+	Serial.begin(115200);
+}
+
+
+void loop(){
+  
+	//Get the Joystick position
+
+	JoystickControl::JoystickState state = jCtrl.getState();
+	
+	//Write the current joystick state into the Serial Communication Port
+	char joystickStateString[50];
+	sprintf(joystickStateString, "Pos X=%d, Pos Y=%d, Z = %s", state.Y, state.X, (state.SW?"Pressed":"Not Pressed"));
+	Serial.println(joystickStateString);
+
+
+	delay(100);// Temps de pause entre lecture
+
+}
