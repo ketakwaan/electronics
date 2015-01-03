@@ -1,0 +1,5 @@
+This library was created to easily handle Arduino Joysticks.
+See the "example.txt" file for a full example.
+
+You can get X, Y and SW values, mapped or not.
+Let me know any enhancement I could make.

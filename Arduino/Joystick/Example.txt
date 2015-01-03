@@ -36,6 +36,6 @@ void loop(){
 	Serial.println(joystickStateString);
 
 
-	delay(100);// Temps de pause entre lecture
+	delay(100); //Pause time
 
 }
